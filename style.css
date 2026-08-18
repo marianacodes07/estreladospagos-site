@@ -1,0 +1,751 @@
+:root {
+  --bg: #150f0c;
+  --bg-alt: #1c1410;
+  --bg-card: #201812;
+  --ember: #c9421c;
+  --ember-hot: #ef7f2e;
+  --gold: #c9a15a;
+  --cream: #f3e9da;
+  --muted: #a8927c;
+  --line: #3a2c22;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--cream);
+  font-family: 'Archivo', sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.03em;
+  font-weight: 400;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.eyebrow {
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ember-hot);
+  font-weight: 600;
+}
+
+/* =========================
+   ACESSIBILIDADE / ANIMAÇÃO
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =========================
+   MENU
+========================= */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(21, 15, 12, 0.94);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 14px 24px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.nav-brand .star {
+  color: var(--gold);
+  font-size: 18px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--ember-hot);
+}
+
+.nav-cta {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 8px 16px;
+  border-radius: 2px;
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.nav-cta:hover {
+  background: var(--gold);
+  color: var(--bg);
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+  position: relative;
+  padding: 120px 24px 100px;
+  text-align: center;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse 700px 420px at 50% 18%,
+      rgba(201, 66, 28, 0.35),
+      transparent 70%
+    ),
+    var(--bg);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.015) 0px,
+      rgba(255, 255, 255, 0.015) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  pointer-events: none;
+}
+
+.hero-star {
+  position: relative;
+  font-size: 34px;
+  color: var(--gold);
+  display: inline-block;
+  animation: glow 3.2s ease-in-out infinite;
+  margin-bottom: 18px;
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    text-shadow: 0 0 8px rgba(201, 161, 90, 0.4);
+    transform: scale(1);
+  }
+
+  50% {
+    text-shadow: 0 0 22px rgba(201, 161, 90, 0.85);
+    transform: scale(1.08);
+  }
+}
+
+.hero h1 {
+  position: relative;
+  font-size: clamp(48px, 9vw, 96px);
+  line-height: 0.95;
+  color: var(--cream);
+}
+
+.hero h1 span {
+  color: var(--ember-hot);
+}
+
+.hero p {
+  position: relative;
+  max-width: 480px;
+  margin: 22px auto 0;
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.hero-actions {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 38px;
+}
+
+/* =========================
+   BOTÕES
+========================= */
+
+.btn {
+  display: inline-block;
+  padding: 15px 30px;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 2px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(
+    135deg,
+    var(--ember-hot),
+    var(--ember)
+  );
+  color: #1a0d05;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(201, 66, 28, 0.4);
+}
+
+.btn-ghost {
+  border: 1px solid var(--line);
+  color: var(--cream);
+}
+
+.btn-ghost:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* =========================
+   DIVISOR
+========================= */
+
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 0 24px;
+  color: var(--gold);
+  opacity: 0.75;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  height: 1px;
+  width: 70px;
+  background: var(--line);
+}
+
+/* =========================
+   RODÍZIO
+========================= */
+
+.rodizio {
+  padding: 90px 0 60px;
+  text-align: center;
+}
+
+.rodizio h2 {
+  font-size: clamp(34px, 6vw, 54px);
+  margin: 14px 0 12px;
+}
+
+.rodizio > .wrap > p {
+  color: var(--muted);
+  max-width: 520px;
+  margin: 0 auto 50px;
+}
+
+.price-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.price-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 34px 24px;
+  position: relative;
+}
+
+.price-card .tag {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.price-card .day {
+  font-size: 15px;
+  color: var(--gold);
+  margin-top: 6px;
+  margin-bottom: 22px;
+}
+
+.price-card .value {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 42px;
+  color: var(--cream);
+}
+
+.price-card .value small {
+  font-family: 'Archivo', sans-serif;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.price-card.featured {
+  border-color: var(--ember);
+}
+
+.price-card.featured::before {
+  content: "MAIS PEDIDO";
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--ember);
+  color: #1a0d05;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 2px;
+}
+
+.reserve-cta {
+  margin-top: 46px;
+}
+
+/* =========================
+   CATEGORIAS
+========================= */
+
+.cat-strip {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+  padding: 30px 24px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.cat-strip a {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.cat-strip a:hover {
+  color: var(--ember-hot);
+}
+
+/* =========================
+   INTRO
+========================= */
+
+.intro {
+  padding: 90px 0;
+  text-align: center;
+}
+
+.intro h2 {
+  font-size: clamp(30px, 5vw, 46px);
+  max-width: 700px;
+  margin: 14px auto 0;
+  color: var(--cream);
+}
+
+/* =========================
+   SEÇÕES DE COMIDA
+========================= */
+
+.category {
+  padding: 70px 0;
+  border-top: 1px solid var(--line);
+}
+
+.category-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.category:nth-child(even) .category-inner {
+  direction: rtl;
+}
+
+.category:nth-child(even) .category-inner > * {
+  direction: ltr;
+}
+
+.category img {
+  width: 100%;
+  border-radius: 4px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.category img:hover {
+  transform: scale(1.015);
+  border-color: var(--gold);
+}
+
+.category h2 {
+  font-size: clamp(30px, 5vw, 44px);
+  margin: 10px 0 16px;
+  color: var(--cream);
+}
+
+.category p {
+  color: var(--muted);
+  max-width: 420px;
+  font-size: 16px;
+}
+
+/* =========================
+   LOCALIZAÇÃO / CONTATO
+========================= */
+
+.info {
+  padding: 90px 0;
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+
+.info h2 {
+  font-size: clamp(30px, 5vw, 46px);
+  margin-top: 14px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  max-width: 700px;
+  margin: 50px auto 0;
+}
+
+.info-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 30px 22px;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+}
+
+.info-card .eyebrow {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.info-card p {
+  color: var(--cream);
+  font-size: 15px;
+}
+
+.info-card p.muted {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+/* =========================
+   RODAPÉ
+========================= */
+
+footer {
+  padding: 60px 24px 40px;
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+
+footer .star {
+  color: var(--gold);
+  font-size: 20px;
+  margin-bottom: 14px;
+  display: block;
+}
+
+footer .foot-links {
+  display: flex;
+  gap: 26px;
+  justify-content: center;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+footer .foot-links a {
+  color: var(--muted);
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+footer .foot-links a:hover {
+  color: var(--ember-hot);
+}
+
+footer .copy {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 26px;
+  opacity: 0.7;
+}
+
+/* =========================
+   WHATSAPP FLUTUANTE
+========================= */
+
+.whatsapp-float {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 100;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #25d366;
+  color: white;
+  font-size: 25px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+  .nav-links {
+    gap: 12px;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+  }
+
+  .category-inner {
+    gap: 36px;
+  }
+}
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 760px) {
+
+  .nav-inner {
+    padding: 13px 18px;
+  }
+
+  .nav-brand {
+    font-size: 18px;
+  }
+
+  .nav-links,
+  .nav-cta {
+    display: none;
+  }
+
+  .hero {
+    padding: 90px 20px 75px;
+  }
+
+  .hero h1 {
+    font-size: clamp(44px, 13vw, 70px);
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .rodizio {
+    padding: 70px 0 50px;
+  }
+
+  .price-grid {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+  }
+
+  .cat-strip {
+    gap: 14px 20px;
+    padding: 25px 18px;
+  }
+
+  .cat-strip a {
+    font-size: 12px;
+  }
+
+  .intro {
+    padding: 70px 0;
+  }
+
+  .category {
+    padding: 55px 0;
+  }
+
+  .category-inner {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    direction: ltr !important;
+  }
+
+  .category:nth-child(even) .category-inner {
+    direction: ltr;
+  }
+
+  .category:nth-child(even) .category-inner > * {
+    direction: ltr;
+  }
+
+  .category img {
+    aspect-ratio: 16 / 11;
+  }
+
+  .info {
+    padding: 70px 0;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin-top: 35px;
+  }
+
+  footer {
+    padding-top: 50px;
+  }
+
+  .whatsapp-float {
+    width: 52px;
+    height: 52px;
+    right: 16px;
+    bottom: 16px;
+  }
+}
+
+/* =========================
+   CELULAR PEQUENO
+========================= */
+
+@media (max-width: 400px) {
+
+  .hero h1 {
+    font-size: 43px;
+  }
+
+  .price-card {
+    padding: 30px 18px;
+  }
+
+  .category h2 {
+    font-size: 34px;
+  }
+
+  .wrap {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
